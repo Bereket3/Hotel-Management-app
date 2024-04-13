@@ -1,0 +1,138 @@
+{% extends "everything/main.html" %}
+{% load static %}
+{% block content %}
+
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+{% include 'everything/navbar.html' %}
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Room Reservation</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="{% url 'LogoutPage' %}">Logout</a></li>
+              <li class="breadcrumb-item active">Reservation List</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Reserved Rooms</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example1" class="table table-bordered  table-striped">
+                  <thead>
+                  <tr>
+                    <th>Customer Name</th>
+                    <th>From -- To</th>
+                    <th>Agrement Starting Date</th>
+                    <th>Monthly Fee</th>
+                    <th>Room Id</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {% for Reservation in form %}
+                  <tr>
+                    <td>{{ Reservation.Customer_Name }}</td>
+                    <td>{{ Reservation.Begining_Day }} -- {{Reservation.Ending_Day}}</td>
+                    <td>{{ Reservation.Agrement_Starting_Date}}</td>
+                    <td>{{ Reservation.Room_Number.Room_costes}}</td>
+                    <td>{{ Reservation.Room_Number }}</td>
+                    <td><a class="btn btn-primary" href="{% url 'ReservationUpdatePage' Reservation.id %}">Edit</a></td>      
+                    <td><a class="btn btn-danger" href="{% url 'ReservationDeletePage' Reservation.id %}">Delete</a></td>
+                  </tr>                  
+                  {% endfor %}
+                  </tbody>
+                  <tfoot>
+                  <tr>
+                    <th>Customer Name</th>
+                    <th>Begining Day</th>
+                    <th>Agrement Starting Date</th>
+                    <th>Monthly Fee</th>
+                    <th>Room Id</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                  </tr>
+                  </tfoot>
+                </table>
+                <a href="{% url 'ReservationCreationPage' %}"><i class="fas fa-thin fa-plus"></i>  Make Reservation</a>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+
+
+<!-- DataTables  & Plugins -->
+<script src="{% static 'js/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'js/dataTables.bootstrap4.min.js' %}"></script>
+<script src="{% static 'js/dataTables.responsive.min.js' %}"></script>
+<script src="{% static 'js/responsive.bootstrap4.min.js' %}"></script>
+<script src="{% static 'js/dataTables.buttons.min.js' %}"></script>
+<script src="{% static 'js/buttons.bootstrap4.min.js' %}"></script>
+<script src="{% static 'js/jszip.min.js' %}"></script>
+<script src="{% static 'js/pdfmake.min.js' %}"></script>
+<script src="{% static 'js/vfs_fonts.js' %}"></script>
+<script src="{% static 'js/buttons.html5.min.js' %}"></script>
+<script src="{% static 'js/buttons.print.min.js' %}"></script>
+<script src="../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+
+<!-- Page specific script -->
+<script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+</script>
+</body>
+{% endblock content %}

@@ -1,0 +1,141 @@
+{% extends "everything/main.html" %}
+
+{% load static %}
+{% block content %}
+
+
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+{% include 'everything/navbar.html' %}
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Room List</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="{% url 'LogoutPage' %}">Logout</a></li>
+              <li class="breadcrumb-item active">Room List</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Total Room: {{form.count}}</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example1" class="table table-bordered  table-striped">
+                  <thead>
+                  <tr>
+                    <th>Room Id</th>
+                    <th>Floor</th>
+                    <th>Room Type</th>
+                    <th>Room Catagory</th>
+                    <th>Room Photo</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {% for room in form %}
+                  <tr>
+                    <td>{{ room.Room_Name }}</td>
+                    <td>{{ room.Floor_No }}</td>
+                    <td>{{ room.Room_Type}}</td>
+                    <td>{{ room.Room_Catagory}}</td>
+                    <td><a href="{% url 'ViewRoomPage' %}"> view </a></td>
+                    <td><a class="btn btn-primary" href="{% url 'RoomUpdatePage' room.id %}">Edit</a>
+                    </td>
+                    <td><a class="btn btn-danger" href="{% url 'DeletePage' room.id %}">Delete</a></td>
+                  </tr>                  
+                  {% endfor %}
+                  </tbody>
+                  <tfoot>
+                  <tr>
+                    <th>Room Id</th>
+                    <th>Floor</th>
+                    <th>Room Type</th>
+                    <th>Room Catagory</th>
+                    <th>Room Photo</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                  </tr>
+                  </tfoot>
+                </table>
+                <a href="{% url 'RoomCreationPage' %}"><i class="fas fa-thin fa-plus"></i>  Add Room</a>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+
+
+<!-- DataTables  & Plugins -->
+<script src="{% static 'js/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'js/dataTables.bootstrap4.min.js' %}"></script>
+<script src="{% static 'js/dataTables.responsive.min.js' %}"></script>
+<script src="{% static 'js/responsive.bootstrap4.min.js' %}"></script>
+<script src="{% static 'js/dataTables.buttons.min.js' %}"></script>
+<script src="{% static 'js/buttons.bootstrap4.min.js' %}"></script>
+<script src="{% static 'js/jszip.min.js' %}"></script>
+<script src="{% static 'js/pdfmake.min.js' %}"></script>
+<script src="{% static 'js/vfs_fonts.js' %}"></script>
+<script src="{% static 'js/buttons.html5.min.js' %}"></script>
+<script src="{% static 'js/buttons.print.min.js' %}"></script>
+<script src="../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+
+<!-- Page specific script -->
+<script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+</script>
+</body>
+{% endblock content %}

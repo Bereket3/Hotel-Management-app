@@ -1,0 +1,149 @@
+{% extends "everything/main.html" %}
+{% load static %}
+{% block content %}
+
+
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+ {% include "everything/navbar.html" %}
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Client Registration Form</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="{% url 'LogoutPage' %}">Logout</a></li>
+              <li class="breadcrumb-item active">Client regestration</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-12">
+            <!-- general form elements -->
+            <div class="card card-primary card-center">
+              <div class="card-header">
+                <h3 class="card-title">Add or Register Client</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form method="POST" action=''>
+                {% csrf_token %}
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="Client_Name">Client Name</label>
+                    <input type="text" name="Client_Name" class="form-control" value="{{room.Client_Name}}"  placeholder="Enter Client Name...">
+                  </div>
+                  <div class="form-group">
+                    <label for="Password_assigned">Assigned Password</label>
+                    <input type="text" name="Password_assigned" class="form-control" value="{{room.Password_assigned}}"  placeholder="Assigned Password for the client...">
+                  </div>
+                  <div class="form-group">
+                    <label for="Phone_Number">Phone Number</label>
+                    <input type="text" name="Phone_Number" class="form-control" value="{{room.Phone_Number}}" placeholder="Enter Client Phone Number...">
+                  </div>
+                  <div class="form-group">
+                    <label for="Date_of_Registrationy">Date of Registration</label>
+                    <input type="date" name="Date_of_Registration" value="{{room.Date_of_Registration |date:'Y-m-d' }}" class="form-control"  placeholder="Date of admition...">
+                  </div>
+                  <div class="form-group">
+                    <label for="Client_Address">Client Address</label>
+                    <input type="text" name="Client_Address" value="{{room.Client_Address}}" class="form-control"  placeholder="Enter Floor No....">
+                  </div>
+                  <div class="form-group">
+                    <label for="Tin_Number">Tin Number</label>
+                    <input type="number" name="Tin_Number" value="{{room.Tin_Number}}" class="form-control"  placeholder="Tin Number...">
+                  </div>
+                  <div class="form-group">
+                    <label for="Email">Email</label>
+                    <input type="email" name="Email" value="{{room.Email}}" class="form-control"  placeholder="Tin number...">
+                  </div>
+                  <div class="form-group">
+                    <label for="Room_Been_Registered">Room Id</label>
+                    <select class="custom-select rounded-0" style="width: 100%;" name="Room_Been_Registered" >
+                      <option value="">---Select Room---</option>
+                      {% for roo in rooms %}
+                          {% if roo.Room_Name in unavaliable_room %}
+                            <option  value="{{room.Room_Been_Registered}}">Room {{ roo.Room_Name }} is unavaliable</option>
+                          {% elif roo.Room_Name in reserved_rom %}
+                            <option  value="{{room.Room_Been_Registered}}">{{ roo.Room_Name }} is reserved</option>
+                          {% elif room.Room_Been_Registered == roo %}
+                            <option value="{{room.Room_Been_Registered}}" selected="selected">{{room.Room_Been_Registered}} is currently selected</option>
+                          {% else %}
+                            <option  value="{{roo.Room_Name}}" {% if roo.id == id %} selected="selected"  {% endif %}>{{ roo.Room_Name }}</option>
+                          {% endif %}
+                      {% endfor %}
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="Payment_Status">Payment Status</label>
+                    <select class="custom-select rounded-0" style="width: 100%;" name="Payment_Status" >
+                      <option value="">---Select Room---</option>              
+                        {% if room.Payment_Status == "have been payed" %}
+                          <option value="{payment.Payment_Status}" selected="selected">have been payed</option>
+                          <option>is not payed</option>
+                        {% elif room.Payment_Status == "is not payed" %}
+                          <option>have been payed</option>
+                          <option value="{payment.Payment_Status}" selected="selected">is not payed</option>
+                        {% else %}
+                          <option>have been payed</option>
+                          <option>is not payed</option>
+                        {% endif %}
+                    </select>
+
+                  </div>
+
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button type="submit" value=submit class="btn btn-primary" href="DashbordTablePageClient">Submit</button>
+                  <a href="{% url 'DashbordTablePageClient' %}"><h5 class="direct-chat-timestamp float-right">Exit</h5></a>
+                </div>
+                
+              </form>
+            </div>
+            <!-- /.card -->
+          </div>
+          <!--/.col (left) -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<!-- bs-custom-file-input -->
+<script src="{% static 'js/bs-custom-file-input.min.js' %}"></script>
+
+<!-- Page specific script -->
+<script>
+$(function () {
+  bsCustomFileInput.init();
+});
+</script>
+</body>
+
+
+{% endblock content %}

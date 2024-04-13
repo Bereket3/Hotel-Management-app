@@ -1,0 +1,97 @@
+{% extends "everything/main.html" %}
+{% load static %}
+{% block content %}
+
+
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+{% include "everything/navbar.html" %}
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Room static</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="{% url 'DashbordPage' %}">Home</a></li>
+              <li class="breadcrumb-item active">Room Static</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <div class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-12">
+
+
+            <div class="card">
+              <div class="card-header border-0">
+                <h3 class="card-title">Room analisys</h3>
+                <div class="card-tools">
+                  <a href="#" class="btn btn-tool btn-sm">
+                    <i class="fas fa-download"></i>
+                  </a>
+                  <a href="#" class="btn btn-tool btn-sm">
+                    <i class="fas fa-bars"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="card-body table-responsive p-0">
+                <table class="table table-striped table-valign-middle">
+                  <thead>
+                  <tr>
+                    <th>Room Name</th>
+                    <th>Assigned to</th>
+                    <th>Monthly fee</th>
+                    <th>Total Money generated</th>
+                    <th>Total Rented Time</th>
+                  </tr>
+                  </thead>
+                  <tbody>     
+                  <tr>
+                    <th>{{client.Room_Been_Registered}}</th>
+                    <th>{{client.Client_Name}}</th>
+                    <th>{{client.Room_Been_Registered.Room_costes}}</th>
+                    <th>{{total}}</th>
+                    <th>{{client.Date_of_Registration|timesince}}</th>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            
+            <!-- /.card -->
+          </div>
+          <!-- /.col-md-6 -->
+
+          <!-- /.col-md-6 -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+</div>
+<!-- ./wrapper -->
+
+<!-- REQUIRED SCRIPTS -->
+
+
+<!-- OPTIONAL SCRIPTS -->
+<script src="{% static 'js/Chart.min.js' %}"></script>
+
+</body>
+{% endblock content %}

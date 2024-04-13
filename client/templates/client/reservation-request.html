@@ -1,0 +1,114 @@
+{% extends "everything/main.html" %}
+{% load static %}
+{% block content %}
+<div class="wrapper">
+  <!-- Navbar -->
+{% include "client/navbar1.html" %}
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Payment Submition</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="{% url 'HomePage1' %}">Home</a></li>
+              <li class="breadcrumb-item active">Payment</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Payment Varification Form</h3>
+              </div>
+
+              <form method="POST" enctype="multipart/form-data" action="">
+                {% csrf_token %}
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="Client_name">Client Name</label>
+                    <input type="text" name="Client_name" class="form-control" placeholder="Enter your Name...">
+                  </div>
+                  <div class="form-group">
+                    <label for="Room_ID">Room Id</label>
+                    <select class="custom-select rounded-0" style="width: 100%;" name="Room_ID" >
+                      <option value="">---Select your Room---</option>
+                      {% for roo in rooms %}
+                          {% if roo.Room_Name in unavliable_room %}
+                            <option  value="{{room.Room_Been_Registered}}">Room number {{ roo.Room_Name }} is unavaliable</option>
+                          {% else %}
+                            <option  value="{{roo.Room_Name}}">{{ roo.Room_Name }}</option>
+                          {% endif %}
+                      {% endfor %}
+                      
+                    </select>
+
+                  </div>
+                  <div class="form-group">
+                    <label for="Date_beging">Begining Date</label>
+                    <input type="date" name="Date_beging" class="form-control" />
+                  </div>
+                  <div class="form-group">
+                    <label for="Date_ending">Ending Date</label>
+                    <input type="date" name="Date_ending" class="form-control" placeholder="Enter Client Name...">
+                  </div>
+                  <div class="form-group">
+                    <label for="Client_phone">Phone Number</label>
+                    <input type="number" name="Client_phone" class="form-control" placeholder="enter your Phone number"/>
+                  </div>
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button type="submit" value="submit" class="btn btn-primary" href="{% url 'HomePage1' %}">Submit</button>
+                  <a class="btn btn-primary float-right" value="None" href="{% url 'HomePage1' %}">Exit</a>
+                  {% if messages %}
+                    {% for message in messages %}
+                    {{ message }}
+                    {% endfor %}        
+                  {% endif %}
+                </div>
+              </form>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<!-- bs-custom-file-input -->
+<script src="{% static 'js/bs-custom-file-input.min.js' %}"></script>
+
+<script>
+$(function () {
+  bsCustomFileInput.init();
+});
+</script>
+{% endblock content %}
+
+
