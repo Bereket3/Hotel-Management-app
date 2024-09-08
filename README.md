@@ -4,7 +4,18 @@ These project aimed to simplify and digitalized the paper based hotel administra
 
 ## Description
 
-An in-depth paragraph about your project and overview of use.
+The Hotel Management App is a comprehensive solution designed to streamline the management of hotel operations, from guest check-ins to room reservations and billing. This app aims to improve efficiency for hotel staff, enhance guest experience, and automate daily administrative tasks.
+
+### Features
+
+1. Room Booking System: Guests can check room availability, make reservations, and cancel bookings.
+2. Guest Management: Maintain guest profiles, track booking history, and manage check-ins/outs efficiently.
+3. Room Service Requests: Guests can request room service, housekeeping, and other services directly from the app.
+4. Billing and Payments: Generate invoices, process payments, and manage refunds or cancellations.
+5. Inventory Management: Track hotel inventory, including room amenities, toiletries, and kitchen supplies.
+6. Staff Management: Assign tasks to staff members and monitor their progress in real-time.
+7. Reporting and Analytics: Generate reports on occupancy rates, revenue, guest feedback, and staff performance.
+8. Multi-language and Multi-currency Support: Perfect for international guests and hotels.
 
 ## Getting Started
 
@@ -31,14 +42,11 @@ python manage.py migrate
 ```
 python manage.py runserver
 ```
-
-## Help
-
-Any advise for common problems or issues.
-```
-command to run if program contains helper info
-```
-
+!--## Help-->
+<!---->
+<!--Any advise for common problems or issues.-->
+<!---->
+<!---->
 <!--## Authors-->
 <!---->
 <!--Contributors names and contact info-->
