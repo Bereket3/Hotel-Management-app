@@ -1,76 +1,65 @@
-# Hotel Management Application
+# Hotel Booking and Review Web App
 
-These project aimed to simplify and digitalized the paper based hotel administration,
+This project aims to digitalize the hotel booking and reviewing experience, making it easier for users to book rooms, review hotels, and request services.
 
 ## Description
 
-The Hotel Management App is a comprehensive solution designed to streamline the management of hotel operations, from guest check-ins to room reservations and billing. This app aims to improve efficiency for hotel staff, enhance guest experience, and automate daily administrative tasks.
+The Hotel Booking and Review Web App is a full-featured solution designed to allow users to browse hotels, book rooms, review their experience, and request hotel services. Hotel administrators can register their hotels, staff, rooms, and services, streamlining operations and guest experiences.
 
 ### Features
 
-1. Room Booking System: Guests can check room availability, make reservations, and cancel bookings.
-2. Guest Management: Maintain guest profiles, track booking history, and manage check-ins/outs efficiently.
-3. Room Service Requests: Guests can request room service, housekeeping, and other services directly from the app.
-4. Billing and Payments: Generate invoices, process payments, and manage refunds or cancellations.
-5. Inventory Management: Track hotel inventory, including room amenities, toiletries, and kitchen supplies.
-6. Staff Management: Assign tasks to staff members and monitor their progress in real-time.
-7. Reporting and Analytics: Generate reports on occupancy rates, revenue, guest feedback, and staff performance.
-8. Multi-language and Multi-currency Support: Perfect for international guests and hotels.
+1. Hotel Registration: Register hotels with room details, staff information, and available services.
+2. User Authentication: Secure user login and registration system.
+3. Room Booking System: Users can search for available rooms and book based on their preferences.
+4. Review and Rating: Guests can leave reviews and rate their hotel experience.
+5. Service Request: Users can request room service and other hotel services from the app.
+6. Staff Management: Hotels can manage their staff profiles and assign roles.
+7. Room and Service Management: Hotels can manage rooms and services offered to the guests.
+8. Analytics and Reporting: Generate reports on bookings, reviews, and staff performance.
 
 ## Getting Started
 
 ### Dependencies
 
-* Python interpreter
+- Python interpreter (v3.x)
+- Django (v4.x or higher)
+- Database (SQLite, PostgreSQL, etc.)
+- Any modern web browser
 
 ### Installing
 
-* clone the project with
+1. Clone the project with:
 ```
-git clone https://github.com/Bereket3/Hotel-Management-app.git
+git clone https://github.com/your-username/hotel-booking-app.git
 ```
-* create virtual environment and activate it 
-* install dependencies with
+2. Navigate to the project directory:
 ```
-pip install -r requirements.txt
+cd Hotel-Management-App
 ```
-* run make migrations
+3. Create and activate a virtual environment:
+```
+# on cmd
+python -m venv venv && venv\Scripts\activate.bat 
+# on powershell
+python -m venv venv && venv\Scripts\Activate.ps1
+# on bash
+python -m venv venv && .venv\Scripts\activate
+```
+4. Install dependencies:
+```
+pip Install -r requirements.txt
+```
+5. Apply database migrations:
 ```
 python manage.py migrate
 ```
-* run the server and enjoy
+6. Run the development server:
 ```
 python manage.py runserver
 ```
-!--## Help-->
-<!---->
-<!--Any advise for common problems or issues.-->
-<!---->
-<!---->
-<!--## Authors-->
-<!---->
-<!--Contributors names and contact info-->
-<!---->
-<!--ex. Dominique Pizzie  -->
-<!--ex. [@DomPizzie](https://twitter.com/dompizzie)-->
-<!---->
-<!-- ## Version History -->
-<!---->
-<!-- * 0.2 -->
-<!--     * Various bug fixes and optimizations -->
-<!--     * See [commit change]() or See [release history]() -->
-<!-- * 0.1 -->
-<!--     * Initial Release -->
+
+7. Visit `http://127.0.0.1:8000` in your browser to view the app.
 
 ## License
 
-This project is licensed under the [GNU GENERAL PUBLIC LICENSE] License - see the LICENSE.md file for details
-
-<!--## Acknowledgments-->
-<!---->
-<!--Inspiration, code snippets, etc.-->
-<!--* [awesome-readme](https://github.com/matiassingers/awesome-readme)-->
-<!--* [PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)-->
-<!--* [dbader](https://github.com/dbader/readme-template)-->
-<!--* [zenorocha](https://gist.github.com/zenorocha/4526327)-->
-<!--* [fvcproductions](https://gist.github.com/fvcproductions/1bfc2d4aecb01a834b46)-->
+This project is licensed under the GNU GENERAL PUBLIC LICENSE - see the LICENSE.md file for details.
