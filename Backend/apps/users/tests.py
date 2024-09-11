@@ -82,9 +82,7 @@ class UserSerializerTest(TestCase):
 
     def test_profile_picture_update(self):
         """Test updating profile picture in UserSerializer."""
-        test_image = os.path.join(
-            self.basedir, "mediafiles/profile_pictures/1200x801.jpg"
-        )
+        test_image = os.path.join(self.basedir, "helpers/blank.png")
         with open(test_image, "rb") as f:
             uploaded_file = SimpleUploadedFile(
                 name="test_image.jpg", content=f.read(), content_type="image/jpeg"
